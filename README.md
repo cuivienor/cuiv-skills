@@ -7,7 +7,8 @@ Personal skills library for Claude Code.
 ### Claude Code (Recommended)
 
 ```bash
-/plugin install cuivienor/cuiv-skills
+/plugin marketplace add cuivienor/cuiv-skills
+/plugin install cuiv-skills@cuiv-skills-marketplace
 ```
 
 ### Codex
