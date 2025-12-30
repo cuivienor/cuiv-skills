@@ -1,6 +1,6 @@
 # cuiv-skills
 
-Personal skills library for Claude Code.
+Personal skills library for Claude Code. Complementary to [superpowers](https://github.com/obra/superpowers) - add your own domain-specific skills.
 
 ## Installation
 
@@ -49,14 +49,13 @@ Instructions for when and how to use this skill.
 cuiv-skills/
   .claude-plugin/
     plugin.json           # Plugin manifest
+    marketplace.json      # Marketplace config
   skills/
     using-cuiv-skills/    # Meta skill (auto-loaded)
-    example/              # Demo skill
+    example/              # Demo skill (delete after adding real skills)
   hooks/
     hooks.json            # Session hooks config
     session-start.sh      # Injects skill context
-  commands/               # Slash commands
-  agents/                 # Agent definitions
   lib/                    # Shared utilities
   .codex/                 # Codex integration
   .opencode/              # OpenCode integration
