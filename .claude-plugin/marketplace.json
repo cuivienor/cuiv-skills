@@ -1,0 +1,18 @@
+{
+  "name": "cuiv-skills-marketplace",
+  "owner": {
+    "name": "Peter"
+  },
+  "metadata": {
+    "description": "Personal skills library for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "cuiv-skills",
+      "description": "Personal skills library for Claude Code",
+      "version": "0.1.0",
+      "source": "./"
+    }
+  ]
+}
