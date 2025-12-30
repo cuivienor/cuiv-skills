@@ -1,0 +1,12 @@
+{
+  "name": "cuiv-skills",
+  "description": "Personal skills library for Claude Code",
+  "version": "0.1.0",
+  "author": {
+    "name": "Peter"
+  },
+  "homepage": "https://github.com/cuivienor/cuiv-skills",
+  "repository": "https://github.com/cuivienor/cuiv-skills",
+  "license": "MIT",
+  "keywords": ["skills", "personal", "workflows"]
+}
