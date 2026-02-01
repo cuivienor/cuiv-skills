@@ -13,11 +13,13 @@ Query Peter's personal financial data using the DuckDB warehouse. Prefer warehou
 
 | Task | Command |
 |------|---------|
-| Interactive SQL | `duckdb apps/warehouse/vars/warehouse.duckdb` |
+| Interactive SQL | `duckdb ~/.local/share/warehouse/warehouse.duckdb` |
 | One-off query | `python -m warehouse query "SELECT ..."` |
 | Refresh from YNAB | `python -m warehouse sync ynab` |
 | Check sync status | `python -m warehouse status` |
 | Real-time YNAB data | `python -m finlib ynab ...` |
+
+**Override DB path:** Set `WAREHOUSE_DB=/path/to/db` or use `--db` flag.
 
 ## Schema
 
