@@ -7,21 +7,17 @@ description: Use when user asks about spending, budgets, transactions, categorie
 
 Query Peter's personal financial data using the DuckDB warehouse. Prefer warehouse queries over API calls - it's faster and doesn't hit rate limits.
 
+**Requires:** Run from infra repo with devshell active (`direnv allow`).
+
 ## Quick Reference
 
-| Task | Tool |
-|------|------|
-| Query transactions, spending, categories | `duckdb` on warehouse |
-| Refresh data from YNAB | `python -m warehouse sync ynab` |
+| Task | Command |
+|------|---------|
+| Interactive SQL | `duckdb apps/warehouse/vars/warehouse.duckdb` |
+| One-off query | `python -m warehouse query "SELECT ..."` |
+| Refresh from YNAB | `python -m warehouse sync ynab` |
 | Check sync status | `python -m warehouse status` |
-| Get fresh data not in warehouse | `python -m finlib ynab ...` |
-
-## Warehouse Location
-
-```bash
-# Default location (from infra repo)
-/home/cuiv/dev/infra/apps/warehouse/vars/warehouse.duckdb
-```
+| Real-time YNAB data | `python -m finlib ynab ...` |
 
 ## Schema
 
@@ -82,36 +78,16 @@ ORDER BY balance DESC;
 
 ## When to Use finlib CLI
 
-Use `finlib` directly when:
-- Data might have changed since last sync
-- Need real-time balance or recent transactions
-- Exploring data not yet synced
+Use `finlib` directly when data might have changed since last sync:
 
 ```bash
-# List budgets
-python -m finlib ynab budgets
-
-# Recent transactions (last 30 days)
-python -m finlib ynab transactions <budget_id> --since 2024-01-01
-
-# Uncategorized transactions
-python -m finlib ynab transactions <budget_id> --uncategorized
+python -m finlib ynab budgets                              # List budgets
+python -m finlib ynab transactions <budget_id> --limit 20  # Recent transactions
+python -m finlib ynab transactions <budget_id> --uncategorized  # Needs categorization
 ```
 
 ## Workflow
 
 1. **Start with warehouse** - fast, no API calls
-2. **If data seems stale** - run `python -m warehouse sync ynab`
-3. **For real-time needs** - use `python -m finlib ynab ...`
-
-## Running Queries
-
-**Via duckdb CLI (preferred for exploration):**
-```bash
-duckdb /home/cuiv/dev/infra/apps/warehouse/vars/warehouse.duckdb
-```
-
-**Via warehouse CLI:**
-```bash
-cd /home/cuiv/dev/infra && python -m warehouse query "SELECT * FROM raw_ynab.accounts LIMIT 5"
-```
+2. **If data seems stale** - `python -m warehouse sync ynab`
+3. **For real-time needs** - `python -m finlib ynab ...`
